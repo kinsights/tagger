@@ -35,7 +35,7 @@ Configuration
 =============
 
 Dependencies:
-python2.7, stemming, nltk (optional), lxml (optional), tkinter (optional)
+python2.6, stemming, nltk (optional), lxml (optional), tkinter (optional)
 
 You can install the stemming package with::
 
@@ -87,6 +87,7 @@ from __future__ import division
 import collections
 import re
 
+from counter import Counter
 
 class Tag:
     '''
@@ -334,17 +335,20 @@ class Rater:
         multitags = self.create_multitags(tags)
 
         # keep most frequent version of each tag
-        clusters = collections.defaultdict(collections.Counter)
+        clusters = collections.defaultdict(Counter)
         proper = collections.defaultdict(int)
         ratings = collections.defaultdict(float)
 
         for t in multitags:
-            clusters[t][t.string] += 1
+            try:
+                clusters[t][t.string] += 1
+            except KeyError:
+                clusters[t][t.string] = 1
             if t.proper:
                 proper[t] += 1
                 ratings[t] = max(ratings[t], t.rating)
 
-        term_count = collections.Counter(multitags)
+        term_count = Counter(multitags)
 
         for t, cnt in term_count.iteritems():
             t.string = clusters[t].most_common(1)[0][0]
@@ -376,7 +380,7 @@ class Rater:
         @param tags: a list of tags to be assigned a rating
         '''
 
-        term_count = collections.Counter(tags)
+        term_count = Counter(tags)
 
         for t in tags:
             # rating of a single tag is term frequency * weight
