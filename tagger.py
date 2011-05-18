@@ -340,10 +340,7 @@ class Rater:
         ratings = collections.defaultdict(float)
 
         for t in multitags:
-            try:
-                clusters[t][t.string] += 1
-            except KeyError:
-                clusters[t][t.string] = 1
+            clusters[t][t.string] += 1
             if t.proper:
                 proper[t] += 1
                 ratings[t] = max(ratings[t], t.rating)
