@@ -87,7 +87,12 @@ from __future__ import division
 import collections
 import re
 
-from counter import Counter
+try:
+    from collections import Counter
+except ImportError:
+    # Python 2.5 and 2.6 lack the Counter class, so use the back-ported version
+    from counter import Counter
+
 
 class Tag:
     '''
