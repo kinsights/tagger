@@ -31,7 +31,6 @@ class UnicodeReader(Reader):
     def __call__(self, text):
         import unicodedata
         
-        text = unicode(text, errors='ignore')
         text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore')
         return Reader.__call__(self, text)
 
