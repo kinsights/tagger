@@ -467,8 +467,11 @@ if __name__ == '__main__':
                       action="store", type="string", metavar="DICT",
                       help="pickled dictionary for weights")
     parser.add_option("", "--multitag_size", dest="multitag_size", default=3,
-                      action="store", type="int", metavar="TAGSIZE",
-                      help="param multitag_size for Rater")
+                      action="store", type="int", metavar="TAG_SIZE",
+                      help="max words per tag")
+    parser.add_option("", "--tags_number", dest="tags_number", default=5,
+                      action="store", type="int", metavar="TAGS_NUMBER",
+                      help="number of tags to return per document")
     # parser.add_option("-d", "--debug", dest="debug", default=False,
     #                   action="store_true",
     #                   help="debug mode")
@@ -488,5 +491,5 @@ if __name__ == '__main__':
     for doc in documents:
         with open(doc, 'r') as file:
             print 'Tags for ', doc, ':'
-            print tagger(file.read())
+            print tagger(file.read(), tags_number=options.tags_number)
 
