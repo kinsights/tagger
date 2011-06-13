@@ -458,17 +458,32 @@ if __name__ == '__main__':
     import glob
     import pickle
     import sys
+    from optparse import OptionParser
 
-    if len(sys.argv) < 2:
+    usage = "usage: %prog [options] file1 file2..."
+    parser = OptionParser(usage=usage)
+
+    parser.add_option("", "--dict", dest="dictionary", default="data/dict.pkl",
+                      action="store", type="string", metavar="DICT",
+                      help="pickled dictionary for weights")
+    parser.add_option("", "--multitag_size", dest="multitag_size", default=3,
+                      action="store", type="int", metavar="TAGSIZE",
+                      help="param multitag_size for Rater")
+    # parser.add_option("-d", "--debug", dest="debug", default=False,
+    #                   action="store_true",
+    #                   help="debug mode")
+
+    (options, args) = parser.parse_args()
+
+    if not args:
         print 'No arguments given, running tests: '
         documents = glob.glob('tests/*')
     else:
-        documents = sys.argv[1:]
+        documents = args
 
-    print 'Loading dictionary... '
-    weights = pickle.load(open('data/dict.pkl', 'rb'))
+    weights = pickle.load(open(options.dictionary, 'rb'))
 
-    tagger = Tagger(Reader(), Stemmer(), Rater(weights))
+    tagger = Tagger(Reader(), Stemmer(), Rater(weights, multitag_size=options.multitag_size))
 
     for doc in documents:
         with open(doc, 'r') as file:
