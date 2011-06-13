@@ -10,6 +10,7 @@ tagger.tagger.__package__	tagger.tagger-module.html#__package__
 tagger.extras.FastStemmer	tagger.extras.FastStemmer-class.html
 tagger.tagger.Stemmer.preprocess	tagger.tagger.Stemmer-class.html#preprocess
 tagger.tagger.Stemmer.__call__	tagger.tagger.Stemmer-class.html#__call__
+tagger.tagger.Stemmer.match_hyphens	tagger.tagger.Stemmer-class.html#match_hyphens
 tagger.extras.FastStemmer.__init__	tagger.extras.FastStemmer-class.html#__init__
 tagger.tagger.Stemmer.match_contractions	tagger.tagger.Stemmer-class.html#match_contractions
 tagger.extras.HTMLReader	tagger.extras.HTMLReader-class.html
@@ -60,6 +61,7 @@ tagger.tagger.Reader.match_apostrophes	tagger.tagger.Reader-class.html#match_apo
 tagger.tagger.Stemmer	tagger.tagger.Stemmer-class.html
 tagger.tagger.Stemmer.preprocess	tagger.tagger.Stemmer-class.html#preprocess
 tagger.tagger.Stemmer.__call__	tagger.tagger.Stemmer-class.html#__call__
+tagger.tagger.Stemmer.match_hyphens	tagger.tagger.Stemmer-class.html#match_hyphens
 tagger.tagger.Stemmer.__init__	tagger.tagger.Stemmer-class.html#__init__
 tagger.tagger.Stemmer.match_contractions	tagger.tagger.Stemmer-class.html#match_contractions
 tagger.tagger.Tag	tagger.tagger.Tag-class.html
