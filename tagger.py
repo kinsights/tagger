@@ -479,7 +479,7 @@ if __name__ == '__main__':
     (options, args) = parser.parse_args()
 
     if not args:
-        print 'No arguments given, running tests: '
+        print('No arguments given, running tests: ')
         documents = glob.glob('tests/*')
     else:
         documents = args
@@ -490,6 +490,6 @@ if __name__ == '__main__':
 
     for doc in documents:
         with open(doc, 'r') as file:
-            print 'Tags for ', doc, ':'
-            print tagger(file.read(), tags_number=options.tags_number)
+            print('Tags for ', doc, ':')
+            print(tagger(file.read(), tags_number=options.tags_number))
 
