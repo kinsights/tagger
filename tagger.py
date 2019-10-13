@@ -358,7 +358,7 @@ class Rater:
 
         term_count = Counter(multitags)
 
-        for t, cnt in term_count.iteritems():
+        for t, cnt in term_count.items():
             t.string = clusters[t].most_common(1)[0][0]
             proper_freq = proper[t] / cnt
             if proper_freq >= 0.5:
@@ -369,10 +369,10 @@ class Rater:
         unique_tags = set(t for t in term_count
                           if len(t.string) > 1 and t.rating > 0.0)
         # remove redundant tags
-        for t, cnt in term_count.iteritems():
+        for t, cnt in term_count.items():
             words = t.stem.split()
-            for l in xrange(1, len(words)):
-                for i in xrange(len(words) - l + 1):
+            for l in range(1, len(words)):
+                for i in range(len(words) - l + 1):
                     s = Tag(' '.join(words[i:i + l]))
                     relative_freq = cnt / term_count[s]
                     if ((relative_freq == 1.0 and t.proper) or
@@ -403,10 +403,10 @@ class Rater:
 
         multitags = []
 
-        for i in xrange(len(tags)):
+        for i in range(len(list(tags))):
             t = MultiTag(tags[i])
             multitags.append(t)
-            for j in xrange(1, self.multitag_size):
+            for j in range(1, self.multitag_size):
                 if t.terminal or i + j >= len(tags):
                     break
                 else:
